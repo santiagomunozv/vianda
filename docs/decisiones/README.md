@@ -13,6 +13,9 @@ Cada archivo documenta una decisión técnica: el contexto, lo que se decidió y
 | 0007 | La IA vive solo en el backend | Aceptada |
 | 0008 | Catálogo de equivalencias con configuración abierta | Aceptada |
 | 0009 | Planes versionados y cálculo guardado en los registros | Aceptada |
+| 0010 | Herramientas del monorepo y paquetes internos compilados | Aceptada |
+| 0011 | Docker solo para servicios de desarrollo | Aceptada |
+| 0012 | API sobre Nest 12: ESM, Vitest y sin telemetría externa | Aceptada |
 
 Plantilla para nuevas decisiones:
 

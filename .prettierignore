@@ -1,0 +1,8 @@
+pnpm-lock.yaml
+dist/
+coverage/
+.turbo/
+.expo/
+apps/api/prisma/migrations/
+# La prosa de la documentación se escribe a mano.
+*.md

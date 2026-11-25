@@ -1,0 +1,12 @@
+packages:
+  - apps/*
+  - packages/*
+allowBuilds:
+  '@parcel/watcher': true
+  '@prisma/engines': true
+  dotenv: false
+  esbuild: true
+  prisma: true
+permissions:
+  dotenv:
+    skills: false

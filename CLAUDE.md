@@ -19,14 +19,20 @@ docs/                   producto, arquitectura, modelo de datos, decisiones
 
 Gestión del monorepo: pnpm workspaces + Turborepo. Todo el proyecto es TypeScript en modo estricto.
 
-## Comandos (a crear en el scaffolding)
+## Comandos
+
+Requisitos: Node 24 (`.nvmrc`), corepack activado (`corepack enable pnpm`) y Docker. Copia `apps/api/.env.example` a `apps/api/.env`.
 
 - `pnpm install` instala todo el monorepo.
-- `pnpm dev` levanta api, web y mobile con Turborepo.
-- `pnpm --filter <app> dev` levanta una sola app.
+- `pnpm dev` compila los paquetes una vez y levanta api (3000), web (5173) y mobile (Metro, 8081) con Turborepo; los paquetes quedan en modo watch.
+- `pnpm --filter <app> dev` levanta una sola app (`api`, `web`, `mobile`). Los paquetes se llaman `@vianda/shared` y `@vianda/equivalencias`.
+- `pnpm build` compila paquetes y apps.
 - `pnpm test`, `pnpm lint`, `pnpm typecheck` en todo el monorepo.
+- `pnpm format` aplica Prettier; `pnpm format:check` solo verifica.
+- `pnpm db:up` y `pnpm db:down` levantan y detienen PostgreSQL con Docker Compose.
 - `pnpm db:migrate` corre `prisma migrate dev` en `apps/api`.
 - `pnpm db:seed` carga los datos iniciales.
+- `pnpm --filter api db:generate` regenera el cliente de Prisma (también lo hace `typecheck`).
 
 Al crear o cambiar un script, actualiza esta lista.
 

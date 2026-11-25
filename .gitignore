@@ -1,0 +1,27 @@
+# Dependencias
+node_modules/
+
+# Compilados y cachés
+dist/
+build/
+coverage/
+.turbo/
+*.tsbuildinfo
+
+# Expo
+.expo/
+web-build/
+expo-env.d.ts
+apps/mobile/ios/
+apps/mobile/android/
+
+# Entorno: solo se versionan los .env.example
+.env
+.env.*
+!.env.example
+
+# Sistema y editores
+.DS_Store
+*.log
+.idea/
+apps/api/src/generated/

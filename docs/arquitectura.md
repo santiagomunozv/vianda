@@ -99,8 +99,8 @@ Reglas: funciones puras y deterministas; los errores de dominio se devuelven com
 ## Pruebas
 
 - `packages/equivalencias` y `packages/shared`: Vitest.
-- `apps/api`: Jest (estándar de Nest), con pruebas de integración contra una base PostgreSQL de prueba.
-- `apps/web` y `apps/mobile`: pruebas de componentes donde haya lógica; la lógica de cálculo ya está probada en el paquete.
+- `apps/api`: Vitest (estándar de Nest 12, ver decisión 0012), con pruebas de integración contra una base PostgreSQL de prueba.
+- `apps/web` (Vitest y Testing Library) y `apps/mobile` (Jest con `jest-expo`): pruebas de componentes donde haya lógica; la lógica de cálculo ya está probada en el paquete.
 
 ## Configuración y secretos
 

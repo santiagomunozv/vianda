@@ -1,0 +1,11 @@
+// Esquema de Vianda. Los modelos de la fase 1 se agregan en el paso 4
+// según docs/modelo-de-datos.md.
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
