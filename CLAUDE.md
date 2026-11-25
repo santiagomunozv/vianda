@@ -50,6 +50,7 @@ Las credenciales de PostgreSQL viven solo en el `.env` de la raíz. La API const
 6. **Los planes se versionan.** Ajustar un plan crea una versión nueva; las anteriores no se editan.
 7. **Datos de salud:** borrado lógico por defecto; borrado físico solo al eliminar la cuenta. Nunca registrar datos de salud en logs.
 8. **Validación compartida:** los esquemas Zod de `packages/shared` validan en la API y en los clientes. No duplicar validaciones a mano.
+9. **Los textos de la interfaz son neutros y nunca de reproche; los colores de grupo identifican grupos, no alertas.** Ver `docs/diseno.md`.
 
 ## Convenciones
 
@@ -68,4 +69,5 @@ Lee el documento que corresponda antes de trabajar en esa área:
 - `docs/modelo-de-datos.md` — entidades, campos, relaciones y reglas del esquema.
 - `docs/fase-1.md` — alcance actual, orden de trabajo y criterio de cierre.
 - `docs/marca/marca.md` — identidad visual: logos, colores, tipografía y sus usos.
+- `docs/diseno.md` — componentes, pantallas y comportamiento de la interfaz.
 - `docs/decisiones/` — registro de decisiones técnicas y sus razones.

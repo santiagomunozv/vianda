@@ -11,23 +11,24 @@ Un plan por intercambios reparte cada comida del día en grupos de alimentos (pr
 - Saber qué falta por comer en cada comida del plan.
 - (Fase 4) Tener ideas de preparaciones con lo que hay en casa.
 
-La pantalla central de la app es **"Qué me toca"**: la próxima comida, las unidades pendientes por grupo y opciones concretas con su cantidad.
+La pantalla central de la app es **"Hoy"**: la comida actual, las unidades pendientes por grupo y opciones concretas con su cantidad.
 
 ## Conceptos
 
 | Término | Significado |
 | --- | --- |
-| Grupo | Familia de alimentos intercambiables entre sí. Lo define cada tabla de equivalencias. |
+| Grupo | Familia de alimentos intercambiables entre sí. Lo define cada tabla de equivalencias y tiene un color propio. |
 | Unidad | Porción de referencia de un grupo. El plan dice cuántas van en cada comida. |
 | Equivalencia | Cantidad de un alimento que equivale a una unidad de su grupo, dentro de una tabla. |
 | Tabla de equivalencias | Conjunto de grupos y equivalencias. Puede heredar de otra y sobrescribir partes. |
 | Unidad canónica | Gramo, mililitro o pieza. Así se guarda y se calcula todo. |
 | Medida casera | "Una taza", "un filete mediano". Solo para entrada y presentación. |
 | Factor de cocción | Relación entre peso cocido y crudo de un alimento. |
-| Plan | Reparto de grupos y unidades por comida. Se versiona. |
+| Plan | Comidas del día con las unidades de cada grupo. Se versiona. |
+| Comida | Momento del plan ("Desayuno", "Pre-entreno"). Nombre libre, orden y hora opcional; un plan tiene las que necesite. |
+| Comida libre | Permiso del plan para reemplazar comidas por otra cosa, con un máximo por semana. |
 | Espacio | Lugar donde viven los planes: personal, independiente u organización. |
 | Membresía | Relación de un usuario con un espacio, con un rol. |
-| Adherencia | Qué tanto se cumple el plan, calculado desde los registros. |
 
 ## Roles
 
@@ -47,22 +48,59 @@ La regla general: **lo que vive en un espacio es del dueño del espacio**, excep
 - Peso, registros y progreso son del usuario y lo acompañan a donde vaya.
 - Al terminar una membresía de paciente, el plan vigente se copia al espacio personal del usuario como plan editable, **con las notas del nutricionista** y con referencia a su origen (plan, nutricionista, organización, fecha). El original queda en el espacio de la organización.
 
+## Cómo se registra
+
+- **Tocar una opción registra** esa unidad con el alimento y su cantidad. Se corrige con "Deshacer" (inmediato) o "Cambiar"/"Quitar" (todo el día). No hay paso de confirmación.
+- **"Ya la comí, sin detallar"** registra la unidad sin alimento. Queda visiblemente a medias hasta que se detalla eligiendo una opción.
+- **"Comí otra cosa"** reemplaza una comida completa, con una nota opcional ("hamburguesa"). La app la clasifica sola: **comida libre** si el plan lo permite y queda cupo esa semana; si no, **fuera del plan**. El usuario nunca elige la clasificación.
+- **"No la comí"** marca la comida como omitida.
+- **"Registrar otro alimento"** agrega algo fuera de las opciones; si no cubre una unidad del plan, queda como extra fuera del plan.
+
+## Estados
+
+**De una unidad:** pendiente, detallada o sin detallar.
+
+**De una comida:**
+
+| Estado | Cuándo | Cumplimiento |
+| --- | --- | --- |
+| Pendiente | El día sigue en curso y no hay registros | — |
+| Incompleta | Algunas unidades registradas | Cuentan las registradas |
+| Cumplida | Todas las unidades registradas, detalladas o no | Cumplida |
+| Comida libre | "Comí otra cosa" con cupo disponible | **Cumplida** (el plan la contempla) |
+| Fuera del plan | "Comí otra cosa" sin cupo | No cumplida, pero registrada |
+| Omitida | "No la comí" | No cumplida, pero registrada |
+| Sin registrar | Terminó el día sin ningún registro | No cumplida y sin información |
+
+## Indicadores
+
+| Indicador | Pregunta que responde | Cálculo |
+| --- | --- | --- |
+| Cumplimiento | ¿Comí lo que dice el plan? | Unidades cumplidas / unidades planeadas. Se muestra con una barra segmentada por motivo: cumplidas, fuera del plan, omitidas, sin registrar. |
+| Detalle | ¿Qué tan precisos son mis datos? | Unidades detalladas / unidades cumplidas |
+| Constancia | ¿Estoy usando la app? | Comidas con algún registro (todo menos "sin registrar") / comidas del plan |
+| Fuera del plan | ¿Cuánto me salí? | Comidas fuera del plan, extras y comidas libres usadas de las permitidas, por semana |
+
+Separar cumplimiento y constancia distingue "no seguí el plan" de "no registré".
+
+## Sesión
+
+La sesión no se cierra salvo que el usuario lo decida: se renueva sola con cada uso (refresco deslizante de 90 días), el token se guarda cifrado en el dispositivo y se revoca al cerrar sesión, al cambiar la contraseña o con "cerrar sesión en todos los dispositivos". Bloqueo con biometría opcional y desactivado por defecto. En la fase 3, las sesiones de profesionales serán más cortas.
+
 ## Funcionalidades por fase
 
 | Fase | Contenido | Criterio para avanzar |
 | --- | --- | --- |
-| 1. Núcleo | Catálogo editable, plan manual versionado, "Qué me toca", calculadora, marcar lo comido | Santiago lo usa a diario |
-| 2. Seguimiento | Peso y medidas, progreso y adherencia, recordatorios, varios usuarios | Lo usan conocidos |
+| 1. Núcleo | Catálogo editable, plan versionado con comidas flexibles y comidas libres, "Hoy" con sus estados, registro completo (detallado, rápido, comí otra cosa, no la comí), calculadora, resumen del día | Santiago lo usa a diario |
+| 2. Seguimiento | Peso y medidas, indicadores semanales, recordatorios, varios usuarios | Lo usan conocidos |
 | 3. Profesionales | Nutricionista, organización, invitaciones, consentimientos, auditoría, copia de plan al desvincularse | Piloto validado en un gimnasio |
 | 4. Complementos | Despensa, sugerencia de mercado, "acabé de mercar", recetas con IA, publicación en tiendas | — |
 
+Fuera de alcance por ahora: tipos de día dentro de un plan (por ejemplo, día de entreno y de descanso). El modelo debe poder sumarlos después sin romper nada.
+
 ## Identidad visual
 
-- Símbolo: una V en forma de cuenco que sostiene un huevo.
-- Color principal `#12355B` (azul marino). Acento `#1C93A6` sobre fondos claros, `#7FD3DF` sobre fondos oscuros. Fondo suave `#EEF3F8`.
-- Tipografía: Manrope. El nombre se escribe "vianda", en minúscula, peso 700.
-- Tono: profesional y clínico, cercano con el usuario.
-- Archivos, tokens completos y usos: `docs/marca/marca.md`.
+Colores, tipografía y logo en `docs/marca/marca.md`. Componentes, pantallas y comportamiento en `docs/diseno.md`.
 
 ## Restricciones legales
 

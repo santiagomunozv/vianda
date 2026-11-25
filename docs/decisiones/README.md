@@ -17,6 +17,12 @@ Cada archivo documenta una decisión técnica: el contexto, lo que se decidió y
 | 0011 | Docker solo para servicios de desarrollo | Aceptada |
 | 0012 | API sobre Nest 12: ESM, Vitest y sin telemetría externa | Aceptada |
 | 0013 | Configuración de PostgreSQL en un solo .env y recarga de la API | Aceptada |
+| 0014 | Sesión persistente y deslizante | Aceptada |
+| 0015 | Registro en un toque con deshacer, sin confirmación | Aceptada |
+| 0016 | Marca rápida como ítem sin alimento | Aceptada |
+| 0017 | Comidas flexibles y comida libre con clasificación automática guardada | Aceptada |
+| 0018 | Estados e indicadores derivados | Aceptada |
+| 0019 | Sistema visual: neutros cálidos, color por grupo y dos tipografías | Aceptada |
 
 Plantilla para nuevas decisiones:
 
