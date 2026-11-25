@@ -62,6 +62,7 @@ La regla general: **lo que vive en un espacio es del dueño del espacio**, excep
 - Color principal `#12355B` (azul marino). Acento `#1C93A6` sobre fondos claros, `#7FD3DF` sobre fondos oscuros. Fondo suave `#EEF3F8`.
 - Tipografía: Manrope. El nombre se escribe "vianda", en minúscula, peso 700.
 - Tono: profesional y clínico, cercano con el usuario.
+- Archivos, tokens completos y usos: `docs/marca/marca.md`.
 
 ## Restricciones legales
 

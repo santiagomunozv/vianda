@@ -63,4 +63,5 @@ Lee el documento que corresponda antes de trabajar en esa área:
 - `docs/arquitectura.md` — responsabilidades de cada app y paquete, autenticación, permisos y flujo de datos.
 - `docs/modelo-de-datos.md` — entidades, campos, relaciones y reglas del esquema.
 - `docs/fase-1.md` — alcance actual, orden de trabajo y criterio de cierre.
+- `docs/marca/marca.md` — identidad visual: logos, colores, tipografía y sus usos.
 - `docs/decisiones/` — registro de decisiones técnicas y sus razones.
