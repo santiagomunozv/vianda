@@ -105,4 +105,4 @@ Reglas: funciones puras y deterministas; los errores de dominio se devuelven com
 ## Configuración y secretos
 
 - Variables de entorno por app con un `.env.example` versionado; los `.env` reales nunca se suben.
-- PostgreSQL local con Docker Compose en la raíz.
+- PostgreSQL local con Docker Compose en la raíz. Sus credenciales, puerto y nombres de bases viven solo en el `.env` de la raíz; la API construye la URL de conexión con esos valores (ver decisión 0013).

@@ -19,5 +19,5 @@ Fecha: 2026-11-24
 
 ## Consecuencias
 - Un solo formato compilado sirve a los tres entornos sin configuración de transpilación por herramienta.
-- Cambiar un paquete requiere que su watch recompile. La API en `nest start --watch` no se reinicia sola cuando cambia el `dist` de un paquete: hay que guardar un archivo de la API o reiniciarla.
+- Cambiar un paquete requiere que su watch recompile. La API en `nest start --watch` no se reinicia sola cuando cambia el `dist` de un paquete: hay que guardar un archivo de la API o reiniciarla. *(Reemplazado por 0013: la API ahora se reinicia sola.)*
 - Al subir TypeScript, ESLint o Prisma de versión mayor hay que revisar esta decisión.

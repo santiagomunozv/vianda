@@ -1,18 +1,20 @@
 # Solo servicios de desarrollo. Las apps corren nativas (ver docs/decisiones/0011).
+# Los valores salen del .env de la raíz (copia .env.example).
 services:
   postgres:
     image: postgres:17
     environment:
-      POSTGRES_USER: vianda
-      POSTGRES_PASSWORD: vianda
-      POSTGRES_DB: vianda
+      POSTGRES_USER: ${POSTGRES_USER:?Falta POSTGRES_USER en .env}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Falta POSTGRES_PASSWORD en .env}
+      POSTGRES_DB: ${POSTGRES_DB:?Falta POSTGRES_DB en .env}
+      POSTGRES_DB_TEST: ${POSTGRES_DB_TEST:?Falta POSTGRES_DB_TEST en .env}
     ports:
-      - '5432:5432'
+      - '${POSTGRES_PORT:?Falta POSTGRES_PORT en .env}:5432'
     volumes:
       - postgres-datos:/var/lib/postgresql/data
       - ./docker/postgres/init:/docker-entrypoint-initdb.d:ro
     healthcheck:
-      test: ['CMD-SHELL', 'pg_isready -U vianda -d vianda']
+      test: ['CMD-SHELL', 'pg_isready -U "$${POSTGRES_USER}" -d "$${POSTGRES_DB}"']
       interval: 2s
       timeout: 3s
       retries: 20

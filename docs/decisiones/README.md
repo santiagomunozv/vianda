@@ -16,6 +16,7 @@ Cada archivo documenta una decisión técnica: el contexto, lo que se decidió y
 | 0010 | Herramientas del monorepo y paquetes internos compilados | Aceptada |
 | 0011 | Docker solo para servicios de desarrollo | Aceptada |
 | 0012 | API sobre Nest 12: ESM, Vitest y sin telemetría externa | Aceptada |
+| 0013 | Configuración de PostgreSQL en un solo .env y recarga de la API | Aceptada |
 
 Plantilla para nuevas decisiones:
 

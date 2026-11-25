@@ -21,20 +21,24 @@ Gestión del monorepo: pnpm workspaces + Turborepo. Todo el proyecto es TypeScri
 
 ## Comandos
 
-Requisitos: Node 24 (`.nvmrc`), corepack activado (`corepack enable pnpm`) y Docker. Copia `apps/api/.env.example` a `apps/api/.env`.
+Requisitos: Node 24 (`.nvmrc`), corepack activado (`corepack enable pnpm`) y Docker. Copia `.env.example` a `.env` (PostgreSQL) y `apps/api/.env.example` a `apps/api/.env`. Guía completa para personas en `README.md`.
 
 - `pnpm install` instala todo el monorepo.
-- `pnpm dev` compila los paquetes una vez y levanta api (3000), web (5173) y mobile (Metro, 8081) con Turborepo; los paquetes quedan en modo watch.
-- `pnpm --filter <app> dev` levanta una sola app (`api`, `web`, `mobile`). Los paquetes se llaman `@vianda/shared` y `@vianda/equivalencias`.
+- `pnpm dev` compila los paquetes una vez y levanta api (3000), web (5173) y mobile (Metro, 8081) con Turborepo; los paquetes quedan en modo watch y la API se reinicia sola cuando cambia su código o el `dist` de un paquete.
+- `pnpm dev:api`, `pnpm dev:web`, `pnpm dev:mobile` levantan una sola app con los paquetes en watch.
+- `pnpm --filter <app> <script>` corre un script de una app (`api`, `web`, `mobile`); requiere los paquetes ya compilados. Los paquetes se llaman `@vianda/shared` y `@vianda/equivalencias`.
 - `pnpm build` compila paquetes y apps.
 - `pnpm test`, `pnpm lint`, `pnpm typecheck` en todo el monorepo.
 - `pnpm format` aplica Prettier; `pnpm format:check` solo verifica.
 - `pnpm db:up` y `pnpm db:down` levantan y detienen PostgreSQL con Docker Compose.
+- `pnpm db:reset` borra el volumen de PostgreSQL y recrea las bases vacías.
 - `pnpm db:migrate` corre `prisma migrate dev` en `apps/api`.
 - `pnpm db:seed` carga los datos iniciales.
 - `pnpm --filter api db:generate` regenera el cliente de Prisma (también lo hace `typecheck`).
 
-Al crear o cambiar un script, actualiza esta lista.
+Al crear o cambiar un script, actualiza esta lista y `README.md`.
+
+Las credenciales de PostgreSQL viven solo en el `.env` de la raíz. La API construye la URL con `urlBaseDeDatos` (`apps/api/src/config/base-de-datos.ts`); no agregues un `DATABASE_URL` aparte.
 
 ## Reglas que no se negocian
 

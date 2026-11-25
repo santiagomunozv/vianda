@@ -7,6 +7,9 @@
   },
   "scripts": {
     "dev": "turbo run build --filter=./packages/* && turbo run dev",
+    "dev:api": "turbo run build --filter=./packages/* && turbo run dev --filter=api...",
+    "dev:web": "turbo run build --filter=./packages/* && turbo run dev --filter=web...",
+    "dev:mobile": "turbo run build --filter=./packages/* && turbo run dev --filter=mobile...",
     "build": "turbo run build",
     "test": "turbo run test",
     "lint": "turbo run lint",
@@ -16,7 +19,8 @@
     "db:up": "docker compose up -d --wait",
     "db:down": "docker compose down",
     "db:migrate": "pnpm --filter api db:migrate",
-    "db:seed": "pnpm --filter api db:seed"
+    "db:seed": "pnpm --filter api db:seed",
+    "db:reset": "docker compose down -v && docker compose up -d --wait"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
